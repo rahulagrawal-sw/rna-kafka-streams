@@ -1,0 +1,22 @@
+spring:
+  kafka:
+    client-id: square-finder
+    bootstrap-servers:
+      - kafka-1:19092
+      - kafka-2:29092
+      - kafka-3:39092
+    template:
+      default-topic: input-topic
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.LongSerializer
+    consumer:
+      group-id: random-consumer
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.LongDeserializer
+---
+kafka:
+  topic:
+    input: input-topic
+    even-output: square-output
